@@ -41,7 +41,7 @@
         <p class="small muted">${fill(H.note)}</p>
       </div>
       <div class="video">${H.video
-                       ? `<iframe src="${H.video}" title="فيديو تعريفي" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+        ? `<iframe src="${H.video}" title="فيديو تعريفي" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
         : `<div class="placeholder">▶ ${H.videoPlaceholder}</div>`}</div>
     </div>
     <div class="container stats">${map(S.stats, s =>
@@ -110,7 +110,7 @@
 
   <section id="instructor" class="section alt"><div class="container split">
     ${imgOr(I.photo, "صورة المدرّب", "photo")}
-    <div><p class="eyebrow">${I.eyebrow}</p><h2>${I.name}</h2><p class="muted">${I.role}</p>
+    <div><p class="eyebrow">${I.eyebrow}</p><h2>${I.name}</h2><p class="muted">${I.role}</p>${map(I.bio, p => `<p class="bio">${p}</p>`)}
       <ul class="checklist">${map(I.bullets, b => `<li>${b}</li>`)}</ul></div>
   </div></section>
 
@@ -128,10 +128,12 @@
     ${head(F.eyebrow, F.title)}<p class="intro">${fill(F.text)}</p>
     <form id="signup-form" class="form">
       <input name="name" required placeholder="${F.namePlaceholder}">
-      <input name="phone" type="tel" required placeholder="${F.phonePlaceholder}" dir="ltr">
+      <input name="email" type="email" required placeholder="${F.emailPlaceholder}" dir="ltr">
+      <input name="phone" type="tel" placeholder="${F.phonePlaceholder}" dir="ltr">
       <select name="role" required><option value="">${F.rolePlaceholder}</option>
         ${map(F.roles, r => `<option>${r}</option>`)}</select>
       <button class="btn btn-accent" type="submit">${F.button}</button>
+      <p id="form-msg" class="small"></p>
       <p class="small muted">${F.privacy}</p>
     </form>
   </div></section>
@@ -160,14 +162,25 @@
     <a class="btn btn-outline" href="${buyHref}" target="_blank">اشترِ · ${S.course.price}$</a>
   </div>`;
 
-  // نموذج التسجيل → يفتح واتساب برسالة جاهزة
-  document.getElementById("signup-form").addEventListener("submit", (e) => {
+  // نموذج التسجيل → يحفظ البيانات ويرسل الرابط على الإيميل
+  const form = document.getElementById("signup-form");
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const d = new FormData(e.target);
-    const msg = F.waMessage
-      .replace("{name}", d.get("name"))
-      .replace("{phone}", d.get("phone"))
-      .replace("{role}", d.get("role"));
-    window.open(wa(msg), "_blank");
+    const btn = form.querySelector("button");
+    const msg = document.getElementById("form-msg");
+    btn.disabled = true;
+    btn.textContent = F.sending;
+    try {
+      await fetch(F.scriptUrl, {
+        method: "POST",
+        mode: "no-cors",
+        body: new URLSearchParams(new FormData(form))
+      });
+      form.innerHTML = `<div class="form-success">✓ ${F.success}</div>`;
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = F.button;
+      msg.textContent = F.error;
+    }
   });
 })();
