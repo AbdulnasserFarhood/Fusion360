@@ -112,6 +112,13 @@ footer { background:#0a1d33; color:#c9d3df; padding:40px 0 100px; }
 .form-success { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25);
                 border-radius:12px; padding:18px; line-height:1.9; }
 .bio { margin-top:12px; }
+.form input[type=email], .form input[type=tel] { direction:ltr; text-align:right; }
+.form input[type=email]::placeholder, .form input[type=tel]::placeholder { direction:rtl; }
+.form .invalid { outline:3px solid #ff6b6b; }
+.form-error { color:#ffb3b3; font-weight:700; min-height:1.5em; }
+.form-success { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25);
+                border-radius:12px; padding:18px; line-height:1.9; }
+.bio { margin-top:12px; }
 @media (max-width:860px) {
   .nav nav { display:none; }
   .nav .btn { margin-inline-start:auto; }
