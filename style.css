@@ -110,4 +110,9 @@ footer { background:#0a1d33; color:#c9d3df; padding:40px 0 100px; }
                 padding:10px 12px; background:#fff; box-shadow:0 -4px 20px rgba(0,0,0,.08); }
   .mobile-bar .btn { flex:1; padding:10px; }
 img.photo { aspect-ratio:auto; height:auto; object-fit:contain; }
+       .scribble { position:relative; white-space:nowrap; }
+.scribble::after {
+  content:""; position:absolute; inset-inline:-3%; bottom:-.18em; height:.38em;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24' preserveAspectRatio='none'%3E%3Cpath d='M4 15 C 50 7, 110 5, 196 10' fill='none' stroke='%23f26b1d' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M40 20 C 90 15, 140 15, 175 18' fill='none' stroke='%23f26b1d' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+}
 }
