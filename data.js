@@ -198,7 +198,7 @@ const SITE = {
   howTo: {
     title: "كيف تبدأ",
     steps: [
-            { title: "جرّب مجاناً", text: "اكتب اسمك وبريدك الإلكتروني، ويصلك رابط الدروس المجانية فوراً." },
+      { title: "جرّب مجاناً", text: "اكتب اسمك وبريدك الإلكتروني، ويصلك رابط الدروس المجانية فوراً." },
       { title: "اشترِ حين تكون جاهزاً", text: "ادفع بالبطاقة أو PayPal من الموقع، أو عبر WhatsApp بالطريقة التي تناسبك." },
       { title: "تعلّم وأنجز مشروعك", text: "يُفعَّل وصولك خلال 24 ساعة، وتكمل بوتيرتك حتى الشهادة." }
     ]
@@ -218,9 +218,6 @@ const SITE = {
   },
 
   testimonials: {
-    title: "انضم إلى <span class='scribble'>130 متعلماً</span>",
-subtitle: "من تقييمات المتعلمين على الدورة (مترجمة من الإنجليزية)",
-      testimonials: {
     title: "انضم إلى <span class='scribble'>130 متعلماً</span>",
     subtitle: "من تقييمات المتعلمين على الدورة (مترجمة من الإنجليزية)",
     items: [
@@ -246,7 +243,7 @@ subtitle: "من تقييمات المتعلمين على الدورة (مترج�
     eyebrow: "جرّب قبل أن تدفع",
     title: "ابدأ أول {free} دروس مجاناً",
     text: "يصلك رابط الدروس على بريدك الإلكتروني فوراً، مع نصيحة لأسبوعك الأول. لا بطاقة، ولا التزام.",
-  scriptUrl:"https://script.google.com/macros/s/AKfycbw8sjGpQsmHxbgmjfI7Sy_wkJqgHsYV4dzq5zlyk-TKXCFSl2eG6VGUiVJdhZXSPX43/exec",
+    scriptUrl: "https://script.google.com/macros/s/AKfycbw8sjGpQsmHxbgmjfI7Sy_wkJqgHsYV4dzq5zlyk-TKXCFSl2eG6VGUiVJdhZXSPX43/exec",
     namePlaceholder: "الاسم الكامل",
     emailPlaceholder: "البريد الإلكتروني، مثل name@gmail.com",
     phonePlaceholder: "رقم WhatsApp (اختياري)، مثل 96171123456",
@@ -259,8 +256,7 @@ subtitle: "من تقييمات المتعلمين على الدورة (مترج�
     sending: "جارٍ الإرسال...",
     success: "تم! أرسلنا رابط الدروس إلى بريدك الإلكتروني. إذا لم تجده خلال دقائق، تحقّق من مجلد الرسائل غير المرغوب فيها (Spam).",
     error: "حدث خطأ، حاول مرة أخرى أو تواصل معنا على WhatsApp.",
-    privacy: "نستخدم بياناتك فقط لإرسال الدروس ومتابعتك بخصوص الدورة.",
-    waMessage: "مرحباً، أريد الدروس المجانية لدورة Fusion 360 | الاسم: {name} | الرقم: {phone} | أنا: {role}"
+    privacy: "نستخدم بياناتك فقط لإرسال الدروس ومتابعتك بخصوص الدورة."
   },
 
   faq: {
