@@ -198,7 +198,7 @@ const SITE = {
   howTo: {
     title: "كيف تبدأ",
     steps: [
-      { title: "جرّب مجاناً", text: "اكتب اسمك ورقم WhatsApp، ويصلك رابط الدروس المجانية فوراً." },
+            { title: "جرّب مجاناً", text: "اكتب اسمك وبريدك الإلكتروني، ويصلك رابط الدروس المجانية فوراً." },
       { title: "اشترِ حين تكون جاهزاً", text: "ادفع بالبطاقة أو PayPal من الموقع، أو عبر WhatsApp بالطريقة التي تناسبك." },
       { title: "تعلّم وأنجز مشروعك", text: "يُفعَّل وصولك خلال 24 ساعة، وتكمل بوتيرتك حتى الشهادة." }
     ]
@@ -231,6 +231,7 @@ const SITE = {
     eyebrow: "جرّب قبل أن تدفع",
     title: "ابدأ أول {free} دروس مجاناً",
     text: "يصلك الرابط على WhatsApp مع خطة بسيطة لأسبوعك الأول. لا بطاقة، ولا التزام.",
+  scriptUrl:"https://script.google.com/macros/s/AKfycbw8sjGpQsmHxbgmjfI7Sy_wkJqgHsYV4dzq5zlyk-TKXCFSl2eG6VGUiVJdhZXSPX43/exec",
     namePlaceholder: "الاسم",
     phonePlaceholder: "رقم WhatsApp",
     rolePlaceholder: "أنا...",
