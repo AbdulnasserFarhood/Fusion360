@@ -70,8 +70,15 @@ const SITE = {
     priceUnit: "دولاراً، مرة واحدة",
     priceNote: "لا اشتراك شهري. جرّب الدروس المجانية أولاً، ثم أكمل متى كنت جاهزاً.",
     paymentsTitle: "طرق الدفع",
-    payments: ["بطاقة", "PayPal", "Whish Money", "OMT", "تحويل بنكي", "Western Union"],
-    paymentsNote: "من لبنان أو من خارجه."
+    payments: [
+      { label: "بطاقة", online: true },
+      { label: "PayPal", online: true },
+      { label: "Whish Money" },
+      { label: "OMT" },
+      { label: "تحويل بنكي" },
+      { label: "Western Union" }
+    ],
+    paymentsNote: "اضغط على طريقة الدفع التي تناسبك. من لبنان أو من خارجه.",
   },
 
   curriculum: {
