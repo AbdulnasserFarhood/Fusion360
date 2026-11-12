@@ -41,6 +41,7 @@ h3 { font-size:1.12rem; margin-bottom:4px; }
 .hero-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:48px; align-items:center; }
 .badges, .chips { display:flex; gap:8px; flex-wrap:wrap; }
 .badge, .chip { background:#fff; border:1px solid #e3e7ec; padding:3px 12px; border-radius:999px; font-size:.85rem; }
+.badge:last-child { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:700; }
 .tag { background:color-mix(in srgb, var(--accent) 12%, #fff); color:var(--accent); padding:2px 10px;
        border-radius:999px; font-size:.8rem; font-weight:700; font-style:normal; white-space:nowrap; }
 .video { aspect-ratio:16/9; border-radius:var(--r); overflow:hidden; background:var(--primary); }
@@ -108,11 +109,4 @@ footer { background:#0a1d33; color:#c9d3df; padding:40px 0 100px; }
   .mobile-bar { display:flex; gap:8px; position:fixed; bottom:0; inset-inline:0; z-index:60;
                 padding:10px 12px; background:#fff; box-shadow:0 -4px 20px rgba(0,0,0,.08); }
   .mobile-bar .btn { flex:1; padding:10px; }
-}
-
-.badge:last-child {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-  font-weight: 700;
 }
