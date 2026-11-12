@@ -24,7 +24,7 @@ const SITE = {
   course: {
     price: 60,
     freeLessons: 8,
-    buyUrl: "https://www.robogeex.com/slides/fsn100-autodesk-fusion-360-essentials-25",
+    buyUrl: "https://www.robogeex.com/slides/all?my=1",
     buyMessage: "مرحباً، أريد شراء دورة Fusion 360"
   },
 
