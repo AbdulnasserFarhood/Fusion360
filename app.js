@@ -1,4 +1,4 @@
-(function () {
+c(function () {
   const S = SITE;
   const fill = (s) => String(s ?? "")
     .replaceAll("{price}", S.course.price)
@@ -60,7 +60,7 @@
         <a class="btn btn-outline" href="#signup">${fill(S.buttons.free)}</a>
       </div>
       <p class="muted small">${P.paymentsTitle}</p>
-      <div class="chips">${map(P.payments, p => `<span class="chip">${p}</span>`)}</div>
+            <div class="chips">${map(P.payments, p => `<span class="chip">${p}</span>`)}</div>
       <p class="small muted">${P.paymentsNote}</p>
     </div>
   </div></section>
