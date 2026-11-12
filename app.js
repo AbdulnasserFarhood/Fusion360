@@ -1,4 +1,4 @@
-c(function () {
+(function () {
   const S = SITE;
   const fill = (s) => String(s ?? "")
     .replaceAll("{price}", S.course.price)
@@ -60,7 +60,11 @@ c(function () {
         <a class="btn btn-outline" href="#signup">${fill(S.buttons.free)}</a>
       </div>
       <p class="muted small">${P.paymentsTitle}</p>
-            <div class="chips">${map(P.payments, p => `<span class="chip">${p}</span>`)}</div>
+      <div class="chips">${map(P.payments, p => {
+        const label = p.label || p;
+        const url = p.online ? buyHref : wa(`مرحباً، أريد شراء دورة Fusion 360 والدفع عبر ${label}`);
+        return `<a class="chip chip-link" href="${url}" target="_blank">${label}</a>`;
+      })}</div>
       <p class="small muted">${P.paymentsNote}</p>
     </div>
   </div></section>
