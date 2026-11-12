@@ -206,7 +206,7 @@ const SITE = {
     eyebrow: "المدرّب",
     name: "م. حمزة عمّار",
     role: "مهندس حاسوب وروبوتات · مدير البرامج في RoboGeex Academy",
-    photo: "",
+    photo: "certificate.jpg",
     bullets: [
       "أول مدرّب معتمد من Autodesk لبرنامج Fusion 360 في لبنان",
       "أكثر من 50 ورشة عمل في الإلكترونيات والبرمجة والتصميم الميكانيكي",
