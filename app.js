@@ -126,14 +126,14 @@
 
   <section id="signup" class="section dark"><div class="container narrow">
     ${head(F.eyebrow, F.title)}<p class="intro">${fill(F.text)}</p>
-    <form id="signup-form" class="form">
-      <input name="name" required placeholder="${F.namePlaceholder}">
-      <input name="email" type="email" required placeholder="${F.emailPlaceholder}" dir="ltr">
-      <input name="phone" type="tel" placeholder="${F.phonePlaceholder}" dir="ltr">
+    <form id="signup-form" class="form" novalidate>
+      <input name="name" type="text" required autocomplete="name" maxlength="60" placeholder="${F.namePlaceholder}">
+      <input name="email" type="email" required autocomplete="email" inputmode="email" maxlength="100" placeholder="${F.emailPlaceholder}">
+      <input name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="${F.phonePlaceholder}">
       <select name="role" required><option value="">${F.rolePlaceholder}</option>
         ${map(F.roles, r => `<option>${r}</option>`)}</select>
       <button class="btn btn-accent" type="submit">${F.button}</button>
-      <p id="form-msg" class="small"></p>
+      <p id="form-msg" class="form-error"></p>
       <p class="small muted">${F.privacy}</p>
     </form>
   </div></section>
@@ -162,12 +162,67 @@
     <a class="btn btn-outline" href="${buyHref}" target="_blank">اشترِ · ${S.course.price}$</a>
   </div>`;
 
-  // نموذج التسجيل → يحفظ البيانات ويرسل الرابط على الإيميل
+  // ===== نموذج التسجيل: قيود الحقول ثم الإرسال =====
   const form = document.getElementById("signup-form");
+  const msg = document.getElementById("form-msg");
+
+  const rules = {
+    // الاسم: أحرف عربية أو إنجليزية ومسافات فقط
+    name: {
+      clean: v => v.replace(/[^\p{L}\p{M}\s'.-]/gu, ""),
+      ok: v => /^[\p{L}\p{M}][\p{L}\p{M}\s'.-]{1,59}$/u.test(v.trim()),
+      error: F.nameError
+    },
+    // الإيميل: أحرف إنجليزية وأرقام و @ . _ - + فقط
+    email: {
+      clean: v => v.replace(/[^A-Za-z0-9._%+@-]/g, ""),
+      ok: v => /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(v.trim()),
+      error: F.emailError
+    },
+    // الرقم: أرقام فقط، مع + اختيارية في البداية
+    phone: {
+      clean: v => v.replace(/[^\d+]/g, "").replace(/(?!^)\+/g, ""),
+      ok: v => v.trim() === "" || /^\+?\d{7,15}$/.test(v.trim()),
+      error: F.phoneError
+    }
+  };
+
+  // يمنع كتابة الأحرف غير المسموحة أثناء الكتابة
+  for (const [field, r] of Object.entries(rules)) {
+    const el = form.elements[field];
+    el.addEventListener("input", () => {
+      const cleaned = r.clean(el.value);
+      if (cleaned !== el.value) el.value = cleaned;
+      el.classList.remove("invalid");
+      msg.textContent = "";
+    });
+  }
+  form.elements.role.addEventListener("change", () => {
+    form.elements.role.classList.remove("invalid");
+    msg.textContent = "";
+  });
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    // التحقق من كل خانة
+    for (const [field, r] of Object.entries(rules)) {
+      const el = form.elements[field];
+      if (!r.ok(el.value)) {
+        el.classList.add("invalid");
+        el.focus();
+        msg.textContent = r.error;
+        return;
+      }
+    }
+    if (!form.elements.role.value) {
+      form.elements.role.classList.add("invalid");
+      form.elements.role.focus();
+      msg.textContent = F.rolePlaceholder.replace("...", "") + "؟ اختر من القائمة.";
+      return;
+    }
+
     const btn = form.querySelector("button");
-    const msg = document.getElementById("form-msg");
     btn.disabled = true;
     btn.textContent = F.sending;
     try {
