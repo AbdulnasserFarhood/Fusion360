@@ -41,7 +41,7 @@
         <p class="small muted">${fill(H.note)}</p>
       </div>
       <div class="video">${H.video
-               ? `<iframe src="${H.video}" title="فيديو تعريفي" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+                       ? `<iframe src="${H.video}" title="فيديو تعريفي" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
         : `<div class="placeholder">▶ ${H.videoPlaceholder}</div>`}</div>
     </div>
     <div class="container stats">${map(S.stats, s =>
