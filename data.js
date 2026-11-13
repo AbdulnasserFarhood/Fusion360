@@ -1,236 +1,248 @@
 // ================================================
-//  ✏️ كل محتوى الموقع هنا. عدّل النصوص بين علامات " "
+//  ✏️ كل محتوى الموقع هنا. عدّل النصوص بين علامات ` `
 //  {price} = السعر   {free} = عدد الدروس المجانية
 //  لخط برتقالي تحت كلمة: <span class='scribble'>الكلمة</span>
 // ================================================
 const SITE = {
 
-  theme: { primary: "#0f2a4a", accent: "#f26b1d", bg: "#f5f7fa" },
+  theme: { primary: `#0f2a4a`, accent: `#f26b1d`, bg: `#f5f7fa` },
 
-  meta: { title: "دورة Fusion 360 بالعربية" },
+  meta: { title: `دورة Fusion 360 بالعربية` },
 
-    brand: {
-    name: "RoboGeex Academy",
-    logo: "logo.svg",
-    logoWhite: "logo-white.svg"
+  // إن كنت ما زلت تستعمل PNG غيّر الامتداد إلى .png
+  brand: {
+    name: `RoboGeex Academy`,
+    logo: `logo.svg`,
+    logoWhite: `logo-white.svg`
   },
 
   contact: {
-    whatsapp: "96171171119",
-    phoneDisplay: "+961 71 171 119",
-    email: "info@robogeex.com",
-    partner: "شريك معتمد من Autodesk"
+    whatsapp: `96171171119`,
+    phoneDisplay: `+961 71 171 119`,
+    email: `info@robogeex.com`,
+    partner: `شريك معتمد من Autodesk`
   },
 
   course: {
     price: 60,
     freeLessons: 8,
-    buyUrl: "https://www.robogeex.com/slides/fsn100-autodesk-fusion-360-essentials-25",
-    buyMessage: "مرحباً، أريد شراء دورة Fusion 360"
+    buyUrl: `https://www.robogeex.com/slides/fsn100-autodesk-fusion-360-essentials-25`,
+    buyMessage: `مرحباً، أريد شراء دورة Fusion 360`
   },
 
   buttons: {
-    free: "ابدأ مجاناً",
-    freeHero: "ابدأ أول <b class='num8'>{free}</b> دروس مجاناً",
-    buy: "اشترِ الدورة · {price} دولاراً"
+    free: `ابدأ مجاناً`,
+    freeHero: `ابدأ أول <b class='num8'>{free}</b> دروس مجاناً`,
+    buy: `اشترِ الدورة · {price} دولاراً`
   },
 
   nav: [
-    { label: "المنهج", href: "#curriculum" },
-    { label: "الشهادة", href: "#certificate" },
-    { label: "المدرّب", href: "#instructor" },
-    { label: "السعر", href: "#price" },
-    { label: "الأسئلة الشائعة", href: "#faq" }
+    { label: `المنهج`, href: `#curriculum` },
+    { label: `الشهادة`, href: `#certificate` },
+    { label: `المدرّب`, href: `#instructor` },
+    { label: `السعر`, href: `#price` },
+    { label: `الأسئلة الشائعة`, href: `#faq` }
   ],
 
   hero: {
-    badges: ["دورة مسجّلة بالعربية", "للمبتدئين", "شهادة من Autodesk"],
-    title: "تعلّم <span class='scribble'>Fusion 360</span> بالعربي من الصفر، وأنهِ الدورة بمشروع حقيقي وشهادة من Autodesk.",
-    subtitle: "من أول رسم ثنائي الأبعاد إلى التجميع والرسومات الفنية. بالعربي، مع تقييم شخصي لمشروعك النهائي.",
-    note: "لا تحتاج بطاقة لتبدأ الدروس المجانية.",
-    video: "https://www.youtube.com/embed/QOqYmdmz32Q",
-    videoPlaceholder: "فيديو تعريفي بالدورة",
-    artCaption: "مثال توضيحي: محرك يُرسم بالأبعاد والقيود ثم يتحوّل إلى مجسّم في Fusion 360"
+    badges: [`دورة مسجّلة بالعربية`, `للمبتدئين`, `شهادة من Autodesk`],
+    title: `تعلّم <span class='scribble'>Fusion 360</span> بالعربي من الصفر، وأنهِ الدورة بمشروع حقيقي وشهادة من Autodesk.`,
+    subtitle: `من أول رسم ثنائي الأبعاد إلى التجميع والرسومات الفنية. بالعربي، مع تقييم شخصي لمشروعك النهائي.`,
+    note: `لا تحتاج بطاقة لتبدأ الدروس المجانية.`,
+    video: `https://www.youtube.com/embed/QOqYmdmz32Q`,
+    videoPlaceholder: `فيديو تعريفي بالدورة`,
+    artCaption: `مثال توضيحي: محرك يُرسم بالأبعاد والقيود ثم يتحوّل إلى مجسّم في Fusion 360`
   },
 
   // kind: "num" رقم عادي، "dur" مدة بالدقائق (546 = 9 ساعات و6 دقائق)
   stats: [
-    { to: 41, kind: "num", label: "درساً مسجّلاً بالعربية" },
-    { to: 546, kind: "dur", label: "من الفيديو المسجّل" },
-    { to: 130, kind: "num", label: "متعلماً مسجّلاً حتى الآن" },
-    { to: 5, kind: "num", label: "وحدات، من الصفر إلى التجميع" }
+    { to: 41, kind: `num`, label: `درساً مسجّلاً بالعربية` },
+    { to: 546, kind: `dur`, label: `من الفيديو المسجّل` },
+    { to: 130, kind: `num`, label: `متعلماً مسجّلاً حتى الآن` },
+    { to: 5, kind: `num`, label: `وحدات، من الصفر إلى التجميع` }
   ],
 
   pace: {
-    eyebrow: "المدة",
-    title: "أقصر مما تتوقع",
-    calc: "المجموع 9 ساعات و6 دقائق. إن وزّعته على 30 يوماً تصبح نحو <b>18 دقيقة يومياً</b>، أي درس واحد أو درسان في اليوم.",
-    ticker: ["ابدأ مجاناً", "41 درساً بالعربية", "مشروع حقيقي", "شهادة Autodesk", "تعلّم بوتيرتك", "من الرسم إلى الطباعة"]
+    eyebrow: `المدة`,
+    title: `أقصر مما تتوقع`,
+    ticker: [`ابدأ مجاناً`, `41 درساً بالعربية`, `مشروع حقيقي`, `شهادة Autodesk`, `تعلّم بوتيرتك`, `من الرسم إلى الطباعة`]
+  },
+
+  videoIntro: {
+    eyebrow: `شاهد قبل أن تبدأ`,
+    title: `تعرّف على الدورة في أقل من دقيقة`,
+    text: `جولة سريعة على ما ستتعلّمه: من أول رسم ثنائي الأبعاد حتى التجميع والرسم الفني،
+      وكيف تنهي الدورة بمشروع حقيقي يُقيَّم شخصياً.`,
+    points: [
+      `شرح بالعربية خطوة بخطوة`,
+      `مشاريع تطبيقية في كل وحدة`,
+      `شهادة من Autodesk عند الإتمام`
+    ]
   },
 
   pricing: {
-    eyebrow: "قيمة واضحة قبل أن تدفع",
-    title: "ماذا تحصل عليه مقابل {price} دولاراً",
+    eyebrow: `قيمة واضحة قبل أن تدفع`,
+    title: `ماذا تحصل عليه مقابل {price} دولاراً`,
     features: [
-      "<b>41 درساً مسجّلاً بالعربية</b>، مجموعها 9 ساعات و6 دقائق",
-      "<b>ابدأ مجاناً:</b> أول {free} دروس متاحة قبل الدفع",
-      "<b>تمارين ومشاريع تطبيقية</b> في كل وحدة",
-      "<b>تقييم شخصي</b> لمشروعك النهائي من المدرّب",
-      "<b>شهادة من Autodesk</b> عند الإتمام",
-      "<b>منتدى خاص بالدورة</b> لطرح أسئلتك",
-      "جلسة أسئلة مباشرة شهرية مع المدرّب على Zoom",
-      "<b>تعلّم بوتيرتك</b>، والوصول دائم"
+      `<b>41 درساً مسجّلاً بالعربية</b>، مجموعها 9 ساعات و6 دقائق`,
+      `<b>ابدأ مجاناً:</b> أول {free} دروس متاحة قبل الدفع`,
+      `<b>تمارين ومشاريع تطبيقية</b> في كل وحدة`,
+      `<b>تقييم شخصي</b> لمشروعك النهائي من المدرّب`,
+      `<b>شهادة من Autodesk</b> عند الإتمام`,
+      `<b>منتدى خاص بالدورة</b> لطرح أسئلتك`,
+      `جلسة أسئلة مباشرة شهرية مع المدرّب على Zoom`,
+      `<b>تعلّم بوتيرتك</b>، والوصول دائم`
     ],
-    cardTitle: "الدورة كاملة",
-    priceUnit: "دولاراً، مرة واحدة",
-    priceNote: "لا اشتراك شهري. جرّب الدروس المجانية أولاً، ثم أكمل متى كنت جاهزاً.",
-    paymentsTitle: "طرق الدفع",
+    cardTitle: `الدورة كاملة`,
+    priceUnit: `دولاراً، مرة واحدة`,
+    priceNote: `لا اشتراك شهري. جرّب الدروس المجانية أولاً، ثم أكمل متى كنت جاهزاً.`,
+    paymentsTitle: `طرق الدفع`,
     payments: [
-      { label: "بطاقة", online: true },
-      { label: "PayPal", online: true },
-      { label: "Whish Money" },
-      { label: "OMT" },
-      { label: "تحويل بنكي" },
-      { label: "Western Union" }
+      { label: `بطاقة`, online: true },
+      { label: `PayPal`, online: true },
+      { label: `Whish Money` },
+      { label: `OMT` },
+      { label: `تحويل بنكي` },
+      { label: `Western Union` }
     ],
-    paymentsNote: "اضغط على طريقة الدفع التي تناسبك. من لبنان أو من خارجه."
+    paymentsNote: `اضغط على طريقة الدفع التي تناسبك. من لبنان أو من خارجه.`
   },
 
   curriculum: {
-    eyebrow: "المنهج",
-    title: "من التثبيت إلى التجميع والرسم الفني، في 5 وحدات",
-    intro: "الشرح بالعربية، وأسماء الأدوات كما تظهر في البرنامج بالإنجليزية. اضغط على أي وحدة لترى دروسها.",
-    freeLabel: "فيها دروس مجانية",
-    emptyLessons: "قائمة الدروس قريباً",
+    eyebrow: `المنهج`,
+    title: `من التثبيت إلى التجميع والرسم الفني، في 5 وحدات`,
+    intro: `الشرح بالعربية، وأسماء الأدوات كما تظهر في البرنامج بالإنجليزية. اضغط على أي وحدة لترى دروسها.`,
+    freeLabel: `فيها دروس مجانية`,
+    emptyLessons: `قائمة الدروس قريباً`,
     modules: [
       {
-        num: 0, title: "مقدمة", meta: "7 دروس · 42 دقيقة", free: true,
+        num: 0, title: `مقدمة`, meta: `7 دروس · 42 دقيقة`, free: true,
         lessons: [
-          { title: "How to use the platform", free: true },
-          { title: "Creating a Google drive shared folder", free: true },
-          { title: "Introduction to CAD", free: true },
-          { title: "Can't Stop Talking About Fusion 360", free: true },
-          { title: "Fusion 360 Overview 1", free: true },
-          { title: "Fusion 360 Overview 2", free: true },
-          { title: "Fusion 360 Overview 3", free: true }
+          { title: `How to use the platform`, free: true },
+          { title: `Creating a Google drive shared folder`, free: true },
+          { title: `Introduction to CAD`, free: true },
+          { title: `Can't Stop Talking About Fusion 360`, free: true },
+          { title: `Fusion 360 Overview 1`, free: true },
+          { title: `Fusion 360 Overview 2`, free: true },
+          { title: `Fusion 360 Overview 3`, free: true }
         ]
       },
       {
-        num: 1, title: "الإعداد والواجهة", meta: "درسان · 34 دقيقة", free: true,
+        num: 1, title: `الإعداد والواجهة`, meta: `درسان · 34 دقيقة`, free: true,
         lessons: [
-          { title: "Setup & Installation", free: true },
-          { title: "Interface & Navigation" }
+          { title: `Setup & Installation`, free: true },
+          { title: `Interface & Navigation` }
         ]
       },
       {
-        num: 2, title: "النمذجة ثلاثية الأبعاد الأساسية", meta: "10 دروس · ساعتان و59 دقيقة",
+        num: 2, title: `النمذجة ثلاثية الأبعاد الأساسية`, meta: `10 دروس · ساعتان و59 دقيقة`,
         lessons: [
-          { title: "Introduction to Constraints & 3D Design" },
-          { title: "Play Brick, Rectangular Pattern" },
-          { title: "Export and Submit Assignments" },
-          { title: "Chamfer Feature" },
-          { title: "Just Practice with Fusion 360!" },
-          { title: "Circular Pattern" },
-          { title: "Fillet" },
-          { title: "Holes" },
-          { title: "Tangent Constraints" },
-          { title: "Practice" }
+          { title: `Introduction to Constraints & 3D Design` },
+          { title: `Play Brick, Rectangular Pattern` },
+          { title: `Export and Submit Assignments` },
+          { title: `Chamfer Feature` },
+          { title: `Just Practice with Fusion 360!` },
+          { title: `Circular Pattern` },
+          { title: `Fillet` },
+          { title: `Holes` },
+          { title: `Tangent Constraints` },
+          { title: `Practice` }
         ]
       },
       {
-        num: 3, title: "التصميم بالميزات", meta: "15 درساً · 3 ساعات و37 دقيقة",
+        num: 3, title: `التصميم بالميزات`, meta: `15 درساً · 3 ساعات و37 دقيقة`,
         lessons: [
-          { title: "Revolve Feature" },
-          { title: "Practice 1 (Revolve)" },
-          { title: "Practice 2 (Revolve)" },
-          { title: "Slots (Sketch)" },
-          { title: "Mirror Feature" },
-          { title: "Sweep Feature" },
-          { title: "Shell Feature" },
-          { title: "Practice (Sweep & Mirror)" },
-          { title: "3D Sketch" },
-          { title: "Symmetric Extrude" },
-          { title: "Construction Planes" },
-          { title: "Practice Exercises" },
-          { title: "Loft using Profiles" },
-          { title: "Loft using Rails / Threads" },
-          { title: "Coil" }
+          { title: `Revolve Feature` },
+          { title: `Practice 1 (Revolve)` },
+          { title: `Practice 2 (Revolve)` },
+          { title: `Slots (Sketch)` },
+          { title: `Mirror Feature` },
+          { title: `Sweep Feature` },
+          { title: `Shell Feature` },
+          { title: `Practice (Sweep & Mirror)` },
+          { title: `3D Sketch` },
+          { title: `Symmetric Extrude` },
+          { title: `Construction Planes` },
+          { title: `Practice Exercises` },
+          { title: `Loft using Profiles` },
+          { title: `Loft using Rails / Threads` },
+          { title: `Coil` }
         ]
       },
       {
-        num: 4, title: "التجميع والرسومات الفنية", meta: "7 دروس · ساعة و14 دقيقة",
+        num: 4, title: `التجميع والرسومات الفنية`, meta: `7 دروس · ساعة و14 دقيقة`,
         lessons: [
-          { title: "Body vs Component" },
-          { title: "Align and Rigid Assembly" },
-          { title: "Revolute & Slider Assembly" },
-          { title: "As-Built Joint" },
-          { title: "Organize Assembly Components" },
-          { title: "Motion Link" },
-          { title: "Technical Drawing" }
+          { title: `Body vs Component` },
+          { title: `Align and Rigid Assembly` },
+          { title: `Revolute & Slider Assembly` },
+          { title: `As-Built Joint` },
+          { title: `Organize Assembly Components` },
+          { title: `Motion Link` },
+          { title: `Technical Drawing` }
         ]
       }
     ]
   },
 
   outcomes: {
-    eyebrow: "النتيجة",
-    title: "بعد الدورة ستستطيع",
+    eyebrow: `النتيجة`,
+    title: `بعد الدورة ستستطيع`,
     items: [
-      { title: "رسم مخططات دقيقة", text: "التنقل في الواجهة، الأبعاد والقيود (Constraints) التي تجعل الرسم ثابتاً." },
-      { title: "نمذجة بارامترية", text: "تصاميم تعدّل أبعادها فيتغيّر المجسّم كله معها." },
-      { title: "أدوات التصميم الأساسية", text: "Chamfer وFillet وSlots وHoles والأنماط الدائرية والمستطيلة." },
-      { title: "نمذجة متقدمة", text: "Revolve وSweep وLoft وCoil وMirror، ورسم ثلاثي الأبعاد." },
-      { title: "تجميع وتحريك القطع", text: "وصلات Rigid وRevolute وSlider وMotion Link لتختبر حركة التصميم." },
-      { title: "رسومات فنية", text: "لوحات تقنية واضحة تُسلَّم للتصنيع أو تُضاف إلى ملف أعمالك." }
+      { title: `رسم مخططات دقيقة`, text: `التنقل في الواجهة، الأبعاد والقيود (Constraints) التي تجعل الرسم ثابتاً.` },
+      { title: `نمذجة بارامترية`, text: `تصاميم تعدّل أبعادها فيتغيّر المجسّم كله معها.` },
+      { title: `أدوات التصميم الأساسية`, text: `Chamfer وFillet وSlots وHoles والأنماط الدائرية والمستطيلة.` },
+      { title: `نمذجة متقدمة`, text: `Revolve وSweep وLoft وCoil وMirror، ورسم ثلاثي الأبعاد.` },
+      { title: `تجميع وتحريك القطع`, text: `وصلات Rigid وRevolute وSlider وMotion Link لتختبر حركة التصميم.` },
+      { title: `رسومات فنية`, text: `لوحات تقنية واضحة تُسلَّم للتصنيع أو تُضاف إلى ملف أعمالك.` }
     ]
   },
 
   audience: {
-    eyebrow: "لمن هذه الدورة",
-    title: "لا تحتاج خلفية هندسية لتبدأ",
+    eyebrow: `لمن هذه الدورة`,
+    title: `لا تحتاج خلفية هندسية لتبدأ`,
     items: [
-      { title: "طلاب الهندسة وتصميم المنتجات", text: "لمشاريعك ومشروع التخرج، وشهادة تضيفها إلى سيرتك." },
-      { title: "طلاب المعاهد التقنية", text: "مهارة تطبيقية تقرّبك من ورش التصنيع والطباعة." },
-      { title: "الهواة وصنّاع الطباعة ثلاثية الأبعاد", text: "حوّل فكرتك إلى ملف جاهز للطباعة." },
-      { title: "طلاب المدارس وأهاليهم", text: "تصميم حقيقي من البيت، بالعربية، ونتيجة يراها الأهل." }
+      { title: `طلاب الهندسة وتصميم المنتجات`, text: `لمشاريعك ومشروع التخرج، وشهادة تضيفها إلى سيرتك.` },
+      { title: `طلاب المعاهد التقنية`, text: `مهارة تطبيقية تقرّبك من ورش التصنيع والطباعة.` },
+      { title: `الهواة وصنّاع الطباعة ثلاثية الأبعاد`, text: `حوّل فكرتك إلى ملف جاهز للطباعة.` },
+      { title: `طلاب المدارس وأهاليهم`, text: `تصميم حقيقي من البيت، بالعربية، ونتيجة يراها الأهل.` }
     ]
   },
 
   certificate: {
-    eyebrow: "الشهادة",
-    title: "ثلاث خطوات إلى شهادة من Autodesk",
+    eyebrow: `الشهادة`,
+    title: `ثلاث خطوات إلى شهادة من Autodesk`,
     steps: [
-      { title: "أكمل التمارين والمشاريع", text: "في كل وحدة تطبيق عملي بعد الشرح." },
-      { title: "سلّم عملك عبر Google Drive", text: "درس في الدورة يشرح لك الطريقة خطوة بخطوة." },
-      { title: "اجتز تقييم المشروع النهائي", text: "مع ملاحظات شخصية من المدرّب على تصميمك." }
+      { title: `أكمل التمارين والمشاريع`, text: `في كل وحدة تطبيق عملي بعد الشرح.` },
+      { title: `سلّم عملك عبر Google Drive`, text: `درس في الدورة يشرح لك الطريقة خطوة بخطوة.` },
+      { title: `اجتز تقييم المشروع النهائي`, text: `مع ملاحظات شخصية من المدرّب على تصميمك.` }
     ],
-    image: "certificate.png",
-    imagePlaceholder: "صورة نموذج الشهادة"
+    image: `certificate.png`,
+    imagePlaceholder: `صورة نموذج الشهادة`
   },
 
   howTo: {
-    title: "كيف تبدأ",
+    title: `كيف تبدأ`,
     steps: [
-      { title: "جرّب مجاناً", text: "اكتب اسمك وبريدك الإلكتروني، ويصلك رابط الدروس المجانية فوراً." },
-      { title: "اشترِ حين تكون جاهزاً", text: "ادفع بالبطاقة أو PayPal من الموقع، أو عبر WhatsApp بالطريقة التي تناسبك." },
-      { title: "تعلّم وأنجز مشروعك", text: "يُفعَّل وصولك خلال 24 ساعة، وتكمل بوتيرتك حتى الشهادة." }
+      { title: `جرّب مجاناً`, text: `اكتب اسمك وبريدك الإلكتروني، ويصلك رابط الدروس المجانية فوراً.` },
+      { title: `اشترِ حين تكون جاهزاً`, text: `ادفع بالبطاقة أو PayPal من الموقع، أو عبر WhatsApp بالطريقة التي تناسبك.` },
+      { title: `تعلّم وأنجز مشروعك`, text: `يُفعَّل وصولك خلال 24 ساعة، وتكمل بوتيرتك حتى الشهادة.` }
     ]
   },
 
   instructor: {
-    eyebrow: "المدرّب",
-    name: "م. حمزة عمّار",
-    role: "مهندس حاسوب وروبوتات | رائد أعمال",
-    photo: "hamza.png",
+    eyebrow: `المدرّب`,
+    name: `م. حمزة عمّار`,
+    role: `مهندس حاسوب وروبوتات | رائد أعمال`,
+    photo: `hamza.png`,
     bullets: [
-      "أول مدرّب معتمد من Autodesk لبرنامج Fusion 360 في لبنان",
-      "أكثر من 50 ورشة عمل في الإلكترونيات والبرمجة والتصميم الميكانيكي",
-      "ميدالية ذهبية في بطولة عالمية للروبوتات في سنغافورة",
-      "خبرة في برمجيات الآلات الصناعية"
+      `أول مدرّب معتمد من Autodesk لبرنامج Fusion 360 في لبنان`,
+      `أكثر من 50 ورشة عمل في الإلكترونيات والبرمجة والتصميم الميكانيكي`,
+      `ميدالية ذهبية في بطولة عالمية للروبوتات في سنغافورة`,
+      `خبرة في برمجيات الآلات الصناعية`
     ]
   },
 
-   testimonials: {
+  testimonials: {
     title: `انضم إلى <span class='scribble'>130 متعلماً</span>`,
     subtitle: `من تقييمات المتعلمين على الدورة (مترجمة من الإنجليزية)`,
     items: [
@@ -259,6 +271,7 @@ const SITE = {
       }
     ]
   },
+
   signup: {
     eyebrow: `جرّب قبل أن تدفع`,
     title: `ابدأ أول {free} دروس مجاناً`,
@@ -271,6 +284,7 @@ const SITE = {
     roles: [`طالب جامعي`, `طالب معهد تقني`, `هاوٍ أو مبتدئ`, `وليّ أمر لطالب مدرسة`, `أمثّل مدرسة أو جامعة`],
     nameError: `اكتب اسمك بالأحرف فقط، بدون أرقام أو رموز.`,
     emailError: `اكتب بريداً إلكترونياً صحيحاً، مثل name@gmail.com`,
+    emailHint: `لوحة المفاتيح على العربية، فحوّلنا ما كتبته إلى الإنجليزية. يُكتب البريد بالأحرف الإنجليزية فقط.`,
     phoneError: `اكتب الرقم بالأرقام فقط مع رمز الدولة، مثل 96171123456`,
     button: `أرسل لي الدروس المجانية`,
     sending: `جارٍ الإرسال...`,
@@ -301,5 +315,7 @@ const SITE = {
     text: `جرّب مجاناً، واشترِ بـ {price} دولاراً حين تقرر.`,
     groupLink: `مدرسة أو جامعة؟ اطلب عرضاً لمجموعة طلاب`,
     groupMessage: `مرحباً، أمثّل مؤسسة تعليمية وأريد عرضاً لمجموعة طلاب`
-  }
+  },
+
+  footerText: `تعلّم Fusion 360 بالعربية من الصفر، وأنهِ الدورة بمشروع حقيقي وشهادة من Autodesk.`
 };
