@@ -7,9 +7,9 @@
   const buyHref = S.course.buyUrl || wa(S.course.buyMessage);
   const map = (arr, fn) => (arr || []).map(fn).join("");
   const head = (eyebrow, title, intro) => `
-    ${eyebrow ? `<p class="eyebrow">${fill(eyebrow)}</p>` : ""}
-    <h2>${fill(title)}</h2>
-    ${intro ? `<p class="intro">${fill(intro)}</p>` : ""}`;
+    ${eyebrow ? `<p class="eyebrow reveal-block">${fill(eyebrow)}</p>` : ""}
+    <h2 class="reveal">${fill(title)}</h2>
+    ${intro ? `<p class="intro reveal-block">${fill(intro)}</p>` : ""}`;
   const ctaButtons = () => `
     <a class="btn btn-accent" href="#signup">${fill(S.buttons.free)}</a>
     <a class="btn btn-outline" href="${buyHref}" target="_blank">${fill(S.buttons.buy)}</a>`;
@@ -22,7 +22,31 @@
 
   const H = S.hero, P = S.pricing, C = S.curriculum, O = S.outcomes, A = S.audience,
         CE = S.certificate, HT = S.howTo, I = S.instructor, T = S.testimonials,
-        F = S.signup, Q = S.faq, FC = S.finalCta;
+        F = S.signup, Q = S.faq, FC = S.finalCta,
+        PC = S.pace || {}, ST = S.story, TP = S.tape;
+
+  const tick = map(PC.ticker, t => `<span>${t}</span>`);
+
+  const storySvg = `
+    <svg viewBox="0 0 300 300">
+      <g class="layer on">
+        <rect class="sk" x="60" y="80" width="180" height="140" rx="10"/>
+        <circle class="sk" cx="120" cy="150" r="22"/>
+        <circle class="sk" cx="190" cy="150" r="14"/>
+      </g>
+      <g class="layer">
+        <rect class="solid" x="60" y="80" width="180" height="140" rx="10"/>
+        <circle class="hole" cx="120" cy="150" r="22"/>
+        <circle class="hole" cx="190" cy="150" r="14"/>
+      </g>
+      <g class="layer">
+        <rect class="solid" x="60" y="80" width="180" height="140" rx="10" opacity=".35"/>
+        <path class="dimline" d="M60 60 H240 M60 52 V68 M240 52 V68"/>
+        <path class="dimline" d="M262 80 V220 M254 80 H270 M254 220 H270"/>
+        <text class="dimtxt" x="150" y="48" text-anchor="middle">180</text>
+        <text class="dimtxt" x="276" y="154">140</text>
+      </g>
+    </svg>`;
 
   document.getElementById("app").innerHTML = `
   <header class="site-header"><div class="container nav">
@@ -37,21 +61,49 @@
         <div class="badges">${map(H.badges, b => `<span class="badge">${b}</span>`)}</div>
         <h1>${fill(H.title)}</h1>
         <p class="lead">${fill(H.subtitle)}</p>
-        <div class="cta">${ctaButtons()}</div>
+        <div class="cta hero-cta">
+          <a class="btn btn-accent btn-glow" href="#signup">${fill(S.buttons.freeHero || S.buttons.free)}<span class="orbit" aria-hidden="true"></span></a>
+          <a class="btn btn-outline" href="${buyHref}" target="_blank">${fill(S.buttons.buy)}</a>
+        </div>
         <p class="small muted">${fill(H.note)}</p>
       </div>
-      <div class="video">${H.video
-        ? `<iframe src="${H.video}" title="فيديو تعريفي" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
-        : `<div class="placeholder">▶ ${H.videoPlaceholder}</div>`}</div>
+      <figure class="hero-art" id="heroArt">
+        <canvas id="part3d" width="420" height="300" role="img" aria-label="رسم تقني لمحرك مبسّط يُبنى من مسقط ثنائي الأبعاد إلى مجسّم ثلاثي الأبعاد"></canvas>
+        ${H.artCaption ? `<figcaption>${H.artCaption}</figcaption>` : ""}
+      </figure>
     </div>
-    <div class="container stats">${map(S.stats, s =>
-      `<div class="stat"><strong>${fill(s.value)}</strong><span>${s.label}</span></div>`)}</div>
   </section>
+
+  <section class="pace" id="pace"><div class="container">
+    ${head(PC.eyebrow, PC.title)}
+    <div class="pace-stage" id="stage" aria-live="polite">${map(S.stats, s => `
+      <article class="pace-card" data-kind="${s.kind || "num"}" data-to="${s.to}">
+        <b class="pace-num">${s.to}</b><span class="pace-lbl">${s.label}</span><i class="bar"></i>
+      </article>`)}</div>
+    <div class="pace-dots" id="dots">${map(S.stats, (s, i) => `<button type="button" aria-label="البطاقة ${i + 1}"></button>`)}</div>
+    ${PC.calc ? `<div class="pace-calc reveal-block"><p>${fill(PC.calc)}</p>
+      <div class="days" id="days" aria-hidden="true">${"<i></i>".repeat(30)}</div></div>` : ""}
+  </div>
+  ${tick ? `<div class="ticker" aria-hidden="true"><div class="track">${tick}${tick}</div></div>` : ""}
+  </section>
+
+  ${H.video ? `<section class="video-section"><div class="container">
+    <div class="video reveal-block"><iframe src="${H.video}" title="فيديو تعريفي" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+  </div></section>` : ""}
+
+  ${ST ? `<section class="story" id="story" aria-label="${ST.title}"><div class="container story-stick">
+    <div>${head(ST.eyebrow, ST.title)}
+      <div class="story-text">${map(ST.stages, (s, i) => `
+        <div class="stage${i ? "" : " on"}"><span class="n">المرحلة ${i + 1}</span><h3>${s.title}</h3><p>${s.text}</p></div>`)}</div>
+      <div class="story-progress" aria-hidden="true">${map(ST.stages, (s, i) => `<i${i ? "" : ` class="on"`}></i>`)}</div>
+    </div>
+    <div class="story-visual" aria-hidden="true">${storySvg}</div>
+  </div></section>` : ""}
 
   <section id="price" class="section alt"><div class="container price-grid">
     <div>${head(P.eyebrow, P.title)}
-      <ul class="checklist">${map(P.features, f => `<li>${fill(f)}</li>`)}</ul></div>
-    <div class="price-card">
+      <ul class="checklist" data-stagger>${map(P.features, f => `<li>${fill(f)}</li>`)}</ul></div>
+    <div class="price-card reveal-block">
       <p class="muted">${P.cardTitle}</p>
       <div class="price"><strong>${S.course.price}</strong> <span>${P.priceUnit}</span></div>
       <p class="small">${fill(P.priceNote)}</p>
@@ -71,7 +123,7 @@
 
   <section id="curriculum" class="section"><div class="container">
     ${head(C.eyebrow, C.title, C.intro)}
-    <div class="list">${map(C.modules, m => `
+    <div class="list curr" id="curr"><div class="curr-fill" id="currFill"></div>${map(C.modules, m => `
       <details class="module">
         <summary>
           <span class="num">${m.num}</span>
@@ -86,37 +138,38 @@
 
   <section class="section alt"><div class="container">
     ${head(O.eyebrow, O.title)}
-    <div class="grid">${map(O.items, (o, i) => `
+    <div class="grid" data-stagger>${map(O.items, (o, i) => `
       <div class="card"><span class="n">${String(i + 1).padStart(2, "0")}</span>
       <h3>${o.title}</h3><p class="muted">${o.text}</p></div>`)}</div>
   </div></section>
 
   <section class="section"><div class="container">
     ${head(A.eyebrow, A.title)}
-    <div class="grid">${map(A.items, a => `<div class="card"><h3>${a.title}</h3><p class="muted">${a.text}</p></div>`)}</div>
+    <div class="grid" data-stagger>${map(A.items, a => `<div class="card"><h3>${a.title}</h3><p class="muted">${a.text}</p></div>`)}</div>
   </div></section>
 
   <section id="certificate" class="section alt"><div class="container split">
     <div>${head(CE.eyebrow, CE.title)}
-      <ol class="steps">${map(CE.steps, s => `<li><div><h3>${s.title}</h3><p class="muted">${s.text}</p></div></li>`)}</ol></div>
-    ${imgOr(CE.image, CE.imagePlaceholder, "photo")}
+      <ol class="steps" data-stagger>${map(CE.steps, s => `<li><div><h3>${s.title}</h3><p class="muted">${s.text}</p></div></li>`)}</ol></div>
+    ${imgOr(CE.image, CE.imagePlaceholder, "photo reveal-block")}
   </div></section>
 
-  <section class="section"><div class="container">
+  <section class="section howto"><div class="container">
     ${head("", HT.title)}
-    <div class="grid">${map(HT.steps, (s, i) => `
+    <div class="grid" data-stagger>${map(HT.steps, (s, i) => `
       <div class="card"><p class="eyebrow">الخطوة ${i + 1}</p><h3>${s.title}</h3><p class="muted">${s.text}</p></div>`)}</div>
   </div></section>
 
   <section id="instructor" class="section alt"><div class="container split">
-    ${imgOr(I.photo, "صورة المدرّب", "photo")}
-    <div><p class="eyebrow">${I.eyebrow}</p><h2>${I.name}</h2><p class="muted">${I.role}</p>${map(I.bio, p => `<p class="bio">${p}</p>`)}
-      <ul class="checklist">${map(I.bullets, b => `<li>${b}</li>`)}</ul></div>
+    ${imgOr(I.photo, "صورة المدرّب", "photo reveal-block")}
+    <div><p class="eyebrow reveal-block">${I.eyebrow}</p><h2 class="reveal">${I.name}</h2>
+      <div class="reveal-block"><p class="muted">${I.role}</p>${map(I.bio, p => `<p class="bio">${p}</p>`)}</div>
+      <ul class="checklist" data-stagger>${map(I.bullets, b => `<li>${b}</li>`)}</ul></div>
   </div></section>
 
   <section class="section"><div class="container">
     ${head("", T.title, T.subtitle)}
-    <div class="grid">${map(T.items, t => `
+    <div class="grid" data-stagger>${map(T.items, t => `
       <figure class="card">
         ${t.image ? `<img class="t-img" src="${t.image}" alt="">` : ""}
         ${t.quote ? `<blockquote>“${t.quote}”</blockquote>` : ""}
@@ -125,8 +178,8 @@
   </div></section>
 
   <section id="signup" class="section dark"><div class="container narrow">
-    ${head(F.eyebrow, F.title)}<p class="intro">${fill(F.text)}</p>
-    <form id="signup-form" class="form" novalidate>
+    ${head(F.eyebrow, F.title)}<p class="intro reveal-block">${fill(F.text)}</p>
+    <form id="signup-form" class="form reveal-block" novalidate>
       <input name="name" type="text" required autocomplete="name" maxlength="60" placeholder="${F.namePlaceholder}">
       <input name="email" type="email" required autocomplete="email" inputmode="email" maxlength="100" placeholder="${F.emailPlaceholder}">
       <input name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="${F.phonePlaceholder}">
@@ -140,11 +193,11 @@
 
   <section id="faq" class="section"><div class="container narrow">
     ${head("", Q.title)}
-    <div class="list">${map(Q.items, f => `<details><summary>${f.q}</summary><p class="faq-a">${f.a}</p></details>`)}</div>
+    <div class="list reveal-block">${map(Q.items, f => `<details><summary>${f.q}</summary><p class="faq-a">${f.a}</p></details>`)}</div>
     <p class="center">${Q.moreText} <a class="link" href="${wa(Q.moreMessage)}" target="_blank">${Q.moreLink}</a></p>
   </div></section>
 
-  <section class="section alt center"><div class="container narrow">
+  <section class="section alt center"><div class="container narrow reveal-block">
     <h2>${fill(FC.title)}</h2><p class="intro">${fill(FC.text)}</p>
     <div class="cta center-flex">${ctaButtons()}</div>
     <a class="link" href="${wa(FC.groupMessage)}" target="_blank">${FC.groupLink}</a>
@@ -160,7 +213,8 @@
   <div class="mobile-bar">
     <a class="btn btn-accent" href="#signup">${fill(S.buttons.free)}</a>
     <a class="btn btn-outline" href="${buyHref}" target="_blank">اشترِ · ${S.course.price}$</a>
-  </div>`;
+  </div>
+  ${TP && TP.length ? `<div class="tape" id="tape" aria-hidden="true"><div class="tape-track"><span class="unit">${map(TP, t => `${t} &nbsp;•&nbsp; `)}</span></div></div>` : ""}`;
 
   // ===== نموذج التسجيل: قيود الحقول ثم الإرسال =====
   const form = document.getElementById("signup-form");
