@@ -4,19 +4,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>دورة Fusion 360 بالعربية</title>
+  <title>دورة Fusion 360 بالعربية | RoboGeex Academy</title>
+
+  <!-- ===== المعاينة عند مشاركة الرابط (WhatsApp / Facebook / LinkedIn) ===== -->
+  <meta name="description" content="تعلّم Fusion 360 بالعربي من الصفر، بوتيرتك. 41 درساً مسجّلاً، مشروع نهائي مع تقييم شخصي، وشهادة من Autodesk. أول 8 دروس مجاناً.">
+  <link rel="canonical" href="https://abdulnasserfarhood.github.io/Fusion360/">
+  <meta name="theme-color" content="#0f2a4a">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:site_name" content="RoboGeex Academy">
+  <meta property="og:url" content="https://abdulnasserfarhood.github.io/Fusion360/">
+  <meta property="og:title" content="دورة Fusion 360 بالعربية · أول 8 دروس مجاناً">
+  <meta property="og:description" content="من أول رسم إلى التجميع والرسم الفني، مع شهادة من Autodesk. 60 دولاراً للدورة كاملة.">
+  <meta property="og:image" content="https://abdulnasserfarhood.github.io/Fusion360/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- ===== القياس: ضع المعرّفين هنا فقط. إن بقيا فارغين لا يُحمَّل شيء ===== -->
+  <script>
+    window.TRACKING = {
+      metaPixel: "",   // مثل "123456789012345" من Meta Events Manager
+      ga4: ""          // مثل "G-ABC123XYZ" من Google Analytics
+    };
+    (function (T) {
+      if (T.metaPixel) {
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', T.metaPixel);
+        fbq('track', 'PageView');
+      }
+      if (T.ga4) {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + T.ga4;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        gtag('js', new Date());
+        gtag('config', T.ga4);
+      }
+    })(window.TRACKING);
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
   <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
   <link rel="stylesheet" href="style.css?v=50">
   <link rel="stylesheet" href="animations.css?v=56">
+
+  <!-- ===== العنوان والسطر تحته يظهران فوراً بدل كلمة بعد كلمة ===== -->
+  <style>
+    .hero h1 .word > span { transform: none !important; animation: none !important; }
+    .hero .lead { opacity: 1 !important; animation: none !important; }
+  </style>
 </head>
 <body>
   <canvas id="cad-bg" aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none"></canvas>
   <div class="progress" aria-hidden="true"></div>
   <div id="app"></div>
-  <script src="data.js?v=52"></script>
-  <script src="app.js?v=56"></script>
+  <script src="data.js?v=53"></script>
+  <script src="app.js?v=57"></script>
   <script src="animations.js?v=50"></script>
 </body>
 </html>
