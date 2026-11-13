@@ -203,12 +203,50 @@
     <a class="link" href="${wa(FC.groupMessage)}" target="_blank">${FC.groupLink}</a>
   </div></section>
 
-  <footer><div class="container foot">
-    <img src="${S.brand.logoWhite}" alt="${S.brand.name}">
-    <a href="${wa("")}" target="_blank" dir="ltr">${S.contact.phoneDisplay}</a>
-    <a href="mailto:${S.contact.email}">${S.contact.email}</a>
-    <span>${S.contact.partner}</span>
-  </div></footer>
+   <footer class="site-footer">
+    <div class="container foot-grid">
+
+      <div class="foot-card foot-brand">
+        <img src="${S.brand.logoWhite}" alt="${S.brand.name}">
+        <p>${S.footerText || "تعلّم Fusion 360 بالعربية من الصفر، وأنهِ الدورة بمشروع حقيقي وشهادة من Autodesk."}</p>
+        <span class="foot-badge">${S.contact.partner}</span>
+      </div>
+
+      <div class="foot-card">
+        <details class="foot-drop">
+          <summary>روابط سريعة
+            <span class="foot-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+          </summary>
+          <ul>${map(S.nav, n => `<li><a href="${n.href}">${n.label}</a></li>`)}</ul>
+        </details>
+        <p class="foot-hint">اضغط على السهم لعرض أقسام الصفحة.</p>
+      </div>
+
+      <div class="foot-card foot-contact">
+        <h4>تواصل معنا</h4>
+        <ul>
+          <li><a href="${wa("")}" target="_blank">
+            <span class="foot-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h3.5l1.8 4.5-2.3 1.4a11 11 0 0 0 6.1 6.1l1.4-2.3 4.5 1.8V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg></span>
+            <span><small>اتصال أو WhatsApp</small><bdi dir="ltr">${S.contact.phoneDisplay}</bdi></span></a></li>
+          <li><a href="mailto:${S.contact.email}">
+            <span class="foot-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z M3 7l9 6 9-6"/></svg></span>
+            <span><small>البريد الإلكتروني</small><bdi dir="ltr">${S.contact.email}</bdi></span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-card foot-cta">
+        <h4>جاهز تبدأ؟</h4>
+        <p>أول ${S.course.freeLessons} دروس مجاناً، بلا بطاقة ولا التزام.</p>
+        <a class="btn btn-accent" href="#signup">${fill(S.buttons.free)}</a>
+      </div>
+
+    </div>
+
+    <div class="container foot-bottom">
+      <span>© ${new Date().getFullYear()} ${S.brand.name}. جميع الحقوق محفوظة.</span>
+      <a href="#top">العودة للأعلى ↑</a>
+    </div>
+  </footer>
 
   <div class="mobile-bar">
     <a class="btn btn-accent" href="#signup">${fill(S.buttons.free)}</a>
