@@ -148,13 +148,21 @@
 
   <section class="section"><div class="container">
     ${head("", T.title, T.subtitle)}
-    <div class="grid" data-stagger>${map(T.items, t => `
-      <figure class="card">
+        <div class="grid t-grid" data-stagger>${map(T.items, t => {
+      const [name, stars] = String(t.author).split(" · ");
+      return `
+      <figure class="card t-card">
+        <div class="t-stars" aria-label="تقييم ٥ من ٥">${stars || "★★★★★"}</div>
+        ${t.highlight ? `<h3 class="t-high">${t.highlight}</h3>` : ""}
         ${t.image ? `<img class="t-img" src="${t.image}" alt="">` : ""}
-        ${t.quote ? `<blockquote>“${t.quote}”</blockquote>` : ""}
-        <figcaption class="muted small">${t.author}</figcaption>
-      </figure>`)}</div>
-  </div></section>
+        ${t.quote ? `<blockquote class="t-quote">${t.quote}</blockquote>` : ""}
+        <button type="button" class="t-more" hidden>اقرأ المزيد</button>
+        <figcaption class="t-author">
+          <span class="t-avatar" aria-hidden="true">${name.trim().charAt(0)}</span>
+          <span>${name.trim()}</span>
+        </figcaption>
+      </figure>`;
+    })}</div></section>
 
   <section id="signup" class="section dark"><div class="container narrow">
     ${head(F.eyebrow, F.title)}<p class="intro reveal-block">${fill(F.text)}</p>
@@ -233,6 +241,20 @@
   </div>`;
 
   // ===== نموذج التسجيل: قيود الحقول ثم الإرسال =====
+    // ===== التعليقات: «اقرأ المزيد» يظهر فقط للنص الطويل =====
+  const fitMore = () => document.querySelectorAll(".t-card").forEach(c => {
+    if (c.classList.contains("open")) return;
+    const q = c.querySelector(".t-quote"), b = c.querySelector(".t-more");
+    if (q && b) b.hidden = q.scrollHeight <= q.clientHeight + 2;
+  });
+  document.querySelectorAll(".t-more").forEach(b => b.addEventListener("click", () => {
+    const c = b.closest(".t-card");
+    c.classList.toggle("open");
+    b.textContent = c.classList.contains("open") ? "عرض أقل" : "اقرأ المزيد";
+  }));
+  fitMore();
+  window.addEventListener("load", fitMore);
+  window.addEventListener("resize", fitMore);
   const form = document.getElementById("signup-form");
   const msg = document.getElementById("form-msg");
 
