@@ -22,31 +22,15 @@
 
   const H = S.hero, P = S.pricing, C = S.curriculum, O = S.outcomes, A = S.audience,
         CE = S.certificate, HT = S.howTo, I = S.instructor, T = S.testimonials,
-        F = S.signup, Q = S.faq, FC = S.finalCta,
-        PC = S.pace || {}, ST = S.story, TP = S.tape;
+        F = S.signup, Q = S.faq, FC = S.finalCta, PC = S.pace || {};
 
   const tick = map(PC.ticker, t => `<span>${t}</span>`);
-
-  const storySvg = `
-    <svg viewBox="0 0 300 300">
-      <g class="layer on">
-        <rect class="sk" x="60" y="80" width="180" height="140" rx="10"/>
-        <circle class="sk" cx="120" cy="150" r="22"/>
-        <circle class="sk" cx="190" cy="150" r="14"/>
-      </g>
-      <g class="layer">
-        <rect class="solid" x="60" y="80" width="180" height="140" rx="10"/>
-        <circle class="hole" cx="120" cy="150" r="22"/>
-        <circle class="hole" cx="190" cy="150" r="14"/>
-      </g>
-      <g class="layer">
-        <rect class="solid" x="60" y="80" width="180" height="140" rx="10" opacity=".35"/>
-        <path class="dimline" d="M60 60 H240 M60 52 V68 M240 52 V68"/>
-        <path class="dimline" d="M262 80 V220 M254 80 H270 M254 220 H270"/>
-        <text class="dimtxt" x="150" y="48" text-anchor="middle">180</text>
-        <text class="dimtxt" x="276" y="154">140</text>
-      </g>
-    </svg>`;
+  const V = S.videoIntro || {
+    eyebrow: "شاهد قبل أن تبدأ",
+    title: "تعرّف على الدورة في أقل من دقيقة",
+    text: "جولة سريعة على ما ستتعلّمه: من أول رسم ثنائي الأبعاد حتى التجميع والرسم الفني، وكيف تنهي الدورة بمشروع حقيقي يُقيَّم شخصياً.",
+    points: ["شرح بالعربية خطوة بخطوة", "مشاريع تطبيقية في كل وحدة", "شهادة من Autodesk عند الإتمام"]
+  };
 
   document.getElementById("app").innerHTML = `
   <header class="site-header"><div class="container nav">
@@ -81,23 +65,18 @@
         <b class="pace-num">${s.to}</b><span class="pace-lbl">${s.label}</span><i class="bar"></i>
       </article>`)}</div>
     <div class="pace-dots" id="dots">${map(S.stats, (s, i) => `<button type="button" aria-label="البطاقة ${i + 1}"></button>`)}</div>
-    ${PC.calc ? `<div class="pace-calc reveal-block"><p>${fill(PC.calc)}</p>
-      <div class="days" id="days" aria-hidden="true">${"<i></i>".repeat(30)}</div></div>` : ""}
   </div>
   ${tick ? `<div class="ticker" aria-hidden="true"><div class="track">${tick}${tick}</div></div>` : ""}
   </section>
 
-  ${H.video ? `<section class="video-section"><div class="container">
-    <div class="video reveal-block"><iframe src="${H.video}" title="فيديو تعريفي" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-  </div></section>` : ""}
-
-  ${ST ? `<section class="story" id="story" aria-label="${ST.title}"><div class="container story-stick">
-    <div>${head(ST.eyebrow, ST.title)}
-      <div class="story-text">${map(ST.stages, (s, i) => `
-        <div class="stage${i ? "" : " on"}"><span class="n">المرحلة ${i + 1}</span><h3>${s.title}</h3><p>${s.text}</p></div>`)}</div>
-      <div class="story-progress" aria-hidden="true">${map(ST.stages, (s, i) => `<i${i ? "" : ` class="on"`}></i>`)}</div>
+  ${H.video ? `<section class="video-section"><div class="container video-split">
+    <div class="video-text">
+      ${head(V.eyebrow, V.title)}
+      <p class="muted reveal-block">${fill(V.text)}</p>
+      <ul class="checklist" data-stagger>${map(V.points, p => `<li>${fill(p)}</li>`)}</ul>
+      <div class="cta reveal-block"><a class="btn btn-accent" href="#signup">${fill(S.buttons.free)}</a></div>
     </div>
-    <div class="story-visual" aria-hidden="true">${storySvg}</div>
+    <div class="video reveal-block"><iframe src="${H.video}" title="فيديو تعريفي" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
   </div></section>` : ""}
 
   <section id="price" class="section alt"><div class="container price-grid">
@@ -203,12 +182,12 @@
     <a class="link" href="${wa(FC.groupMessage)}" target="_blank">${FC.groupLink}</a>
   </div></section>
 
-   <footer class="site-footer">
+  <footer class="site-footer">
     <div class="container foot-grid">
 
       <div class="foot-card foot-brand">
         <img src="${S.brand.logoWhite}" alt="${S.brand.name}">
-        <p>${S.footerText || "تعلّم Fusion 360 بالعربية من الصفر، وأنهِ الدورة بمشروع حقيقي وشهادة من Autodesk."}</p>
+        <p>${S.footerText || ""}</p>
         <span class="foot-badge">${S.contact.partner}</span>
       </div>
 
@@ -251,12 +230,28 @@
   <div class="mobile-bar">
     <a class="btn btn-accent" href="#signup">${fill(S.buttons.free)}</a>
     <a class="btn btn-outline" href="${buyHref}" target="_blank">اشترِ · ${S.course.price}$</a>
-  </div>
-  ${TP && TP.length ? `<div class="tape" id="tape" aria-hidden="true"><div class="tape-track"><span class="unit">${map(TP, t => `${t} &nbsp;•&nbsp; `)}</span></div></div>` : ""}`;
+  </div>`;
 
   // ===== نموذج التسجيل: قيود الحقول ثم الإرسال =====
   const form = document.getElementById("signup-form");
   const msg = document.getElementById("form-msg");
+
+  // الأرقام العربية والفارسية إلى أرقام عادية
+  const toEnDigits = v => v
+    .replace(/[٠-٩]/g, d => d.charCodeAt(0) - 1632)
+    .replace(/[۰-۹]/g, d => d.charCodeAt(0) - 1776);
+
+  // الحرف العربي إلى الحرف الإنجليزي الموجود على المفتاح نفسه
+  const AR_KEYS = {
+    "ض":"q","ص":"w","ث":"e","ق":"r","ف":"t","غ":"y","ع":"u","ه":"i","خ":"o","ح":"p",
+    "ش":"a","س":"s","ي":"d","ب":"f","ل":"g","ا":"h","ت":"j","ن":"k","م":"l",
+    "ئ":"z","ء":"x","ؤ":"c","ر":"v","ى":"n","ة":"m","ز":".","أ":"h","إ":"h","آ":"h"
+  };
+  const hasArabic = v => /[\u0600-\u06FF]/.test(v);
+  const arToEn = (v, typed) => {
+    if (typed === "لا") v = v.replace(/لا(?!.*لا)/, "b"); // مفتاح B على اللوحة العربية يكتب «لا»
+    return toEnDigits(v).replace(/[\u0600-\u06FF]/g, ch => AR_KEYS[ch] || "");
+  };
 
   const rules = {
     // الاسم: أحرف عربية أو إنجليزية ومسافات فقط
@@ -265,28 +260,31 @@
       ok: v => /^[\p{L}\p{M}][\p{L}\p{M}\s'.-]{1,59}$/u.test(v.trim()),
       error: F.nameError
     },
-    // الإيميل: أحرف إنجليزية وأرقام و @ . _ - + فقط
+    // الإيميل: يحوّل ما يُكتب بالعربية إلى الإنجليزية، ثم يُبقي الأحرف المسموحة فقط
     email: {
-      clean: v => v.replace(/[^A-Za-z0-9._%+@-]/g, ""),
+      clean: (v, typed) => arToEn(v, typed).replace(/[^A-Za-z0-9._%+@-]/g, ""),
       ok: v => /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(v.trim()),
       error: F.emailError
     },
     // الرقم: أرقام فقط، مع + اختيارية في البداية
     phone: {
-      clean: v => v.replace(/[^\d+]/g, "").replace(/(?!^)\+/g, ""),
+      clean: v => toEnDigits(v).replace(/[^\d+]/g, "").replace(/(?!^)\+/g, ""),
       ok: v => v.trim() === "" || /^\+?\d{7,15}$/.test(v.trim()),
       error: F.phoneError
     }
   };
 
-  // يمنع كتابة الأحرف غير المسموحة أثناء الكتابة
+  // ينظّف الخانة أثناء الكتابة
   for (const [field, r] of Object.entries(rules)) {
     const el = form.elements[field];
-    el.addEventListener("input", () => {
-      const cleaned = r.clean(el.value);
+    el.addEventListener("input", (e) => {
+      const wasArabic = field === "email" && hasArabic(el.value);
+      const cleaned = r.clean(el.value, e.data);
       if (cleaned !== el.value) el.value = cleaned;
       el.classList.remove("invalid");
-      msg.textContent = "";
+      msg.textContent = wasArabic
+        ? (F.emailHint || "لوحة المفاتيح على العربية، فحوّلنا ما كتبته إلى الإنجليزية. يُكتب البريد بالأحرف الإنجليزية فقط.")
+        : "";
     });
   }
   form.elements.role.addEventListener("change", () => {
