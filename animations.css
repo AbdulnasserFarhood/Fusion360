@@ -165,8 +165,19 @@
   transform-origin:right; transform:scaleX(0); transition:transform 1s var(--ease) .2s; }
 .howto .card.in::before, html:not(.anim) .howto .card::before { transform:scaleX(1); }
 
+/* ===== حجم الشعار (ملف SVG بلا فراغ حوله) ===== */
+.nav { height:84px; }
+.logo { display:block; flex:none; }
+.logo img { height:56px; width:auto; }
+.foot img { height:44px; width:auto; }
+html { scroll-padding-top:96px; }
+
 /* ===== الهاتف ===== */
 @media (max-width:860px) {
+  .nav { height:68px; }
+  .logo img { height:40px; }
+  html { scroll-padding-top:80px; }
+
   .anim .mobile-bar { transform:translateY(120%); transition:transform .5s var(--ease); }
   .anim .mobile-bar.show { transform:none; }
 
