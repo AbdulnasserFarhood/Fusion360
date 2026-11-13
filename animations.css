@@ -159,6 +159,12 @@ html { scroll-padding-top:96px; }
   display:flex; align-items:center; gap:10px; font-weight:700; color:var(--text); font-size:.95rem; }
 .t-avatar { width:38px; height:38px; flex:none; border-radius:50%; display:grid; place-items:center;
   background:var(--primary); color:#fff; font-size:1rem; }
+/* ===== الأسئلة الشائعة: عمودان ===== */
+.faq-cols { display:grid; grid-template-columns:repeat(2, 1fr); gap:12px 20px; align-items:start; margin:28px 0; }
+.faq-cols .list { margin:0; }
+@media (max-width:860px) {
+  .faq-cols { grid-template-columns:1fr; }
+}
 
 /* ===== الفوتر ===== */
 .site-footer { position:relative; overflow:hidden; background:#0a1d33; color:#aebbcb; padding:56px 0 0; }
