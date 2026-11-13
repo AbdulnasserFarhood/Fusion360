@@ -187,7 +187,7 @@
     <div class="faq-cols reveal-block">${(() => {
       const half = Math.ceil(Q.items.length / 2);
       return [Q.items.slice(0, half), Q.items.slice(half)].map(col => `
-        <div class="list">${map(col, f => `<details><summary>${f.q}</summary><p class="faq-a">${f.a}</p></details>`)}</div>`).join("");
+        <div class="list">${map(col, f => `<details><summary>${fill(f.q)}</summary><p class="faq-a">${fill(f.a)}</p></details>`)}</div>`).join("");
     })()}</div>
     <p class="center">${Q.moreText} <a class="link" href="${wa(Q.moreMessage)}" target="_blank">${Q.moreLink}</a></p>
   </div></section>
@@ -249,6 +249,23 @@
   </div>`;
 
   // ===== نموذج التسجيل: قيود الحقول ثم الإرسال =====
+
+  // ===== القياس: أحداث Meta Pixel و Google Analytics =====
+  const track = (fbEvent, gaEvent, params = {}) => {
+    try { if (window.fbq) fbq("track", fbEvent, params); } catch (e) {}
+    try { if (window.gtag) gtag("event", gaEvent, params); } catch (e) {}
+  };
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (!a) return;
+    const href = a.getAttribute("href") || "";
+    const buyViaWa = href.startsWith("https://wa.me/") && decodeURIComponent(href).includes("أريد شراء");
+    if (href === buyHref || buyViaWa) {
+      track("InitiateCheckout", "begin_checkout", { value: S.course.price, currency: "USD", method: buyViaWa ? "whatsapp" : "online" });
+    } else if (href.startsWith("https://wa.me/")) {
+      track("Contact", "contact", { method: "whatsapp" });
+    }
+  });
 
     // ===== الوضع الليلي =====
   const themeBtn = document.getElementById("themeBtn");
@@ -361,12 +378,18 @@
     const btn = form.querySelector("button");
     btn.disabled = true;
     btn.textContent = F.sending;
+    const role = form.elements.role.value;
+    const data = new FormData(form);
+    // مصدر الزائر: يُرسل مع النموذج ليُعرف أي إعلان أو منشور جلبه
+    new URLSearchParams(location.search).forEach((v, k) => { if (k.startsWith("utm_")) data.append(k, v); });
+    data.append("referrer", document.referrer || "");
     try {
       await fetch(F.scriptUrl, {
         method: "POST",
         mode: "no-cors",
-        body: new URLSearchParams(new FormData(form))
+        body: new URLSearchParams(data)
       });
+      track("Lead", "generate_lead", { content_name: "Fusion 360 free lessons", role: role });
       form.innerHTML = `<div class="form-success">✓ ${F.success}</div>`;
     } catch (err) {
       btn.disabled = false;
