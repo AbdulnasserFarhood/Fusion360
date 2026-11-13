@@ -95,14 +95,6 @@ html { scroll-padding-top:96px; }
 .pace-stage.static .pace-card { position:relative; opacity:1; transform:none; filter:none; pointer-events:auto; }
 .pace-stage.static .pace-card .bar { display:none; }
 
-.pace-calc { margin-top:32px; max-width:720px; }
-.pace-calc p { font-size:1.05rem; margin:0 0 16px; color:var(--muted); }
-.pace-calc p b { color:var(--accent); }
-.days { display:grid; grid-template-columns:repeat(15,1fr); gap:6px; max-width:520px; }
-.days i { display:block; aspect-ratio:1; border-radius:6px; background:var(--line);
-  transition:background .35s var(--ease), transform .35s var(--ease); }
-.days i.on { background:var(--accent); transform:scale(1.06); }
-
 /* ===== الشريط المتحرك: ثابت في أسفل الشاشة ===== */
 .ticker { position:fixed; left:0; right:0; bottom:0; z-index:55; overflow:hidden;
   margin:0; padding:8px 0;
@@ -115,9 +107,12 @@ html { scroll-padding-top:96px; }
 .track span::after { content:"•"; color:var(--accent); margin-inline-start:28px; }
 @keyframes tick { from { transform:translateX(0); } to { transform:translateX(-50%); } }
 
-/* الفيديو */
-.video-section { padding:40px 0 0; }
-.video-section .video { border-radius:20px; max-width:900px; margin-inline:auto; box-shadow:0 20px 50px -25px rgba(15,42,74,.4); }
+/* ===== الفيديو: النص يميناً والفيديو يساراً ===== */
+.video-section { padding:72px 0 32px; }
+.video-split { display:grid; grid-template-columns:1fr 1.3fr; gap:56px; align-items:center; }
+.video-split .video { width:100%; border-radius:20px; box-shadow:0 24px 60px -28px rgba(15,42,74,.45); }
+.video-text .checklist { margin-top:18px; }
+.video-text .cta { margin-top:24px; }
 
 /* ===== المنهج: خط يمتلئ مع التمرير ===== */
 .curr { position:relative; padding-inline-start:36px; }
@@ -224,11 +219,13 @@ html { scroll-padding-top:96px; }
   .pace-lbl { font-size:18px; }
   .pace-card[data-kind="dur"] .pace-num { font-size:32px; }
   .pace-stage.static { grid-template-columns:1fr; }
-  .days { gap:4px; }
 
   .ticker { padding:6px 0; transition:bottom .4s var(--ease); }
   .track span { font-size:.85rem; }
   body:has(.mobile-bar.show) .ticker { bottom:62px; }
+
+  .video-section { padding:48px 0 16px; }
+  .video-split { grid-template-columns:1fr; gap:28px; }
 
   .site-footer { padding-top:48px; }
   .foot-bottom { padding-bottom:120px; }
