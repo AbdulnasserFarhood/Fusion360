@@ -202,7 +202,52 @@ html { scroll-padding-top:96px; }
   #instructor img.photo { max-height:360px; }
   #instructor .checklist { grid-template-columns:1fr; }
 }
+/* ===== زر الوضع الليلي ===== */
+.theme-btn { order:2; width:40px; height:40px; flex:none; border-radius:50%; cursor:pointer;
+  display:grid; place-items:center; background:transparent; color:var(--text);
+  border:1px solid var(--line); transition:border-color .2s, color .2s, transform .3s; }
+.theme-btn:hover { border-color:var(--accent); color:var(--accent); }
+.theme-btn:active { transform:rotate(-30deg) scale(.92); }
+.theme-btn svg { width:19px; height:19px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.theme-btn .sun { display:none; }
+[data-theme="dark"] .theme-btn .sun { display:block; }
+[data-theme="dark"] .theme-btn .moon { display:none; }
 
+/* ===== ألوان الوضع الليلي ===== */
+[data-theme="dark"] { --bg:#0f1823 !important; --text:#e6ebf2; --muted:#9aa8b8; --line:#243244; color-scheme:dark; }
+[data-theme="dark"] body { background:#0b131d; }
+[data-theme="dark"] .site-header { background:rgba(11,19,29,.9); border-bottom-color:var(--line); }
+[data-theme="dark"] .card,
+[data-theme="dark"] details,
+[data-theme="dark"] .price-card,
+[data-theme="dark"] .placeholder,
+[data-theme="dark"] #instructor .checklist li { background:#132131; border-color:var(--line); }
+[data-theme="dark"] .badge,
+[data-theme="dark"] .chip { background:#132131; border-color:var(--line); }
+[data-theme="dark"] .badge:last-child { background:var(--accent); border-color:var(--accent); }
+[data-theme="dark"] .tag { background:color-mix(in srgb, var(--accent) 20%, transparent); }
+[data-theme="dark"] .lessons,
+[data-theme="dark"] .lessons li,
+[data-theme="dark"] .t-author { border-color:var(--line); }
+[data-theme="dark"] .pace-card { background:linear-gradient(160deg, #132131, #0f1823); }
+[data-theme="dark"] .pace-num,
+[data-theme="dark"] .price strong,
+[data-theme="dark"] .t-high,
+[data-theme="dark"] .track span:nth-child(odd) { color:#fff; }
+[data-theme="dark"] .num,
+[data-theme="dark"] .t-avatar { background:#24384f; }
+[data-theme="dark"] .ticker { background:rgba(11,19,29,.92); }
+[data-theme="dark"] .curr details::before { background:#0b131d; }
+[data-theme="dark"] .mobile-bar { background:#0f1823; }
+[data-theme="dark"] .form input,
+[data-theme="dark"] .form select { background:#0b131d; color:var(--text); border:1px solid var(--line); }
+[data-theme="dark"] #cad-bg,
+[data-theme="dark"] #part3d { filter:invert(1) hue-rotate(180deg); }
+[data-theme="dark"] #instructor img.photo { mix-blend-mode:normal; border-radius:20px; }
+
+/* انتقال ناعم بين الوضعين */
+body, .site-header, .card, details, .price-card, .pace-card, .ticker, .badge, .chip {
+  transition:background-color .35s var(--ease), border-color .35s var(--ease), color .35s var(--ease); }
 /* ===== الفوتر ===== */
 .site-footer { position:relative; overflow:hidden; background:#0a1d33; color:#aebbcb; padding:56px 0 0; }
 .site-footer::before { content:""; position:absolute; top:0; inset-inline:0; height:3px;
