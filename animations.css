@@ -208,4 +208,25 @@ html { scroll-padding-top:96px; }
   .anim .reveal { clip-path:none; }
   .anim .reveal-block { opacity:1; translate:none; }
   .howto .card::before { transform:scaleX(1); }
+   /* ===== الشريط المتحرك ثابت في أسفل الشاشة ===== */
+.ticker {
+  position:fixed; left:0; right:0; bottom:0; z-index:55;
+  margin:0; padding:8px 0;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(8px);
+  border-block:0; border-top:1px solid var(--line);
+  box-shadow:0 -6px 24px -12px rgba(15,42,74,.25);
+}
+.ticker .track span { font-size:.95rem; }
+.ticker .track span::after { margin-inline-start:28px; }
+.pace { padding-bottom:16px; }
+footer { padding-bottom:70px; }
+
+/* على الهاتف: يرتفع فوق شريط الأزرار السفلي عند ظهوره */
+@media (max-width:860px) {
+  .ticker { padding:6px 0; transition:bottom .4s var(--ease); }
+  .ticker .track span { font-size:.85rem; }
+  body:has(.mobile-bar.show) .ticker { bottom:62px; }
+  footer { padding-bottom:130px; }
+}
 }
