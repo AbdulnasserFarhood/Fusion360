@@ -9,10 +9,10 @@ const SITE = {
 
   meta: { title: "دورة Fusion 360 بالعربية" },
 
-  brand: {
+    brand: {
     name: "RoboGeex Academy",
-    logo: "logo.png",
-    logoWhite: "logo-white.png"
+    logo: "logo.svg",
+    logoWhite: "logo-white.svg"
   },
 
   contact: {
