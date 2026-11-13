@@ -27,6 +27,14 @@
 .logo img { height:56px; width:auto; }
 html { scroll-padding-top:96px; }
 
+/* ===== الهيدر: القائمة والزر يميناً، الشعار يساراً ===== */
+.nav nav { order:1; margin-inline-start:0; }
+.nav .btn { order:2; }
+.nav .logo { order:3; margin-inline-start:auto; }
+@media (max-width:860px) {
+  .nav .btn { margin-inline-start:0; }
+}
+
 /* عنوان الـHero كلمة بعد كلمة */
 .hero h1 .word { display:inline-block; overflow:hidden; vertical-align:top; padding-bottom:.12em; }
 .hero h1 .word.done { overflow:visible; }
