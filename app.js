@@ -249,6 +249,22 @@
   </div>`;
 
   // ===== نموذج التسجيل: قيود الحقول ثم الإرسال =====
+
+    // ===== الوضع الليلي =====
+  const themeBtn = document.getElementById("themeBtn");
+  const headerLogo = document.querySelector(".site-header .logo img");
+  const applyTheme = (dark) => {
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    if (headerLogo) headerLogo.src = dark ? S.brand.logoWhite : S.brand.logo;
+    themeBtn.setAttribute("aria-pressed", dark ? "true" : "false");
+    themeBtn.title = dark ? "الوضع النهاري" : "الوضع الليلي";
+  };
+  applyTheme(document.documentElement.dataset.theme === "dark");
+  themeBtn.addEventListener("click", () => {
+    const dark = document.documentElement.dataset.theme !== "dark";
+    applyTheme(dark);
+    try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch (e) {}
+  });
     // ===== التعليقات: «اقرأ المزيد» يظهر فقط للنص الطويل =====
   const fitMore = () => document.querySelectorAll(".t-card").forEach(c => {
     if (c.classList.contains("open")) return;
