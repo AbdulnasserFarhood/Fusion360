@@ -178,9 +178,13 @@
     </form>
   </div></section>
 
-  <section id="faq" class="section"><div class="container narrow">
+    <section id="faq" class="section"><div class="container">
     ${head("", Q.title)}
-    <div class="list reveal-block">${map(Q.items, f => `<details><summary>${f.q}</summary><p class="faq-a">${f.a}</p></details>`)}</div>
+    <div class="faq-cols reveal-block">${(() => {
+      const half = Math.ceil(Q.items.length / 2);
+      return [Q.items.slice(0, half), Q.items.slice(half)].map(col => `
+        <div class="list">${map(col, f => `<details><summary>${f.q}</summary><p class="faq-a">${f.a}</p></details>`)}</div>`).join("");
+    })()}</div>
     <p class="center">${Q.moreText} <a class="link" href="${wa(Q.moreMessage)}" target="_blank">${Q.moreLink}</a></p>
   </div></section>
 
