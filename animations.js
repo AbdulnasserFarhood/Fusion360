@@ -87,7 +87,8 @@
   (function () {
     var header = $(".site-header"), bar = $(".progress"), mobile = $(".mobile-bar"), tape = $("#tape"),
         hero = $(".hero"), story = $("#story"), curr = $("#curr"), currFill = $("#currFill"),
-        art = $("#heroArt"), pace = $("#pace"), days = $$("#days i");
+        art = $("#heroArt"), pace = $("#pace"), days = $$("#days i"),
+        currDots = $$("#curr details");
     var stages = story ? $$(".stage", story) : [], bars = story ? $$(".story-progress i", story) : [],
         layers = story ? $$(".layer", story) : [];
     var lastStage = -1, lastY = window.scrollY, ticking = false;
@@ -120,7 +121,11 @@
       }
       if (curr && currFill) {
         var cr = curr.getBoundingClientRect();
-        currFill.style.setProperty("--cp", reduce ? 1 : clamp((vh * 0.6 - cr.top) / cr.height).toFixed(4));
+        var cp = reduce ? 1 : clamp((vh * 0.6 - cr.top) / cr.height);
+        currFill.style.setProperty("--cp", cp.toFixed(4));
+        // كل دائرة يصلها الخط تتلوّن بالبرتقالي (36 = موضع منتصف الدائرة داخل الوحدة)
+        var reach = cp * cr.height;
+        currDots.forEach(function (d) { d.classList.toggle("lit", d.offsetTop + 36 <= reach); });
       }
       if (pace && days.length) {
         if (reduce) days.forEach(function (d) { d.classList.add("on"); });

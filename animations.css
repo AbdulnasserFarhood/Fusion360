@@ -129,8 +129,10 @@ html { scroll-padding-top:96px; }
   transform-origin:top; transform:scaleY(var(--cp,0)); }
 .curr details { position:relative; overflow:visible; }
 .curr details::before { content:""; position:absolute; inset-inline-start:-36px; top:28px; width:16px; height:16px;
-  border-radius:50%; background:#fff; border:2px solid var(--line); transition:background .3s, border-color .3s; }
-.curr details.on::before { background:var(--accent); border-color:var(--accent); }
+  border-radius:50%; background:#fff; border:2px solid var(--line); transition:background .3s, border-color .3s, box-shadow .3s; }
+.curr details.on::before,
+.curr details.lit::before { background:var(--accent); border-color:var(--accent);
+  box-shadow:0 0 0 5px color-mix(in srgb, var(--accent) 22%, transparent); }
 
 /* ===== ظهور العناصر عند التمرير ===== */
 .anim .reveal { clip-path:inset(-.3em -.3em 100% -.3em); transition:clip-path 1s var(--ease); }
@@ -238,6 +240,8 @@ html { scroll-padding-top:96px; }
 [data-theme="dark"] .t-avatar { background:#24384f; }
 [data-theme="dark"] .ticker { background:rgba(11,19,29,.92); }
 [data-theme="dark"] .curr details::before { background:#0b131d; }
+[data-theme="dark"] .curr details.on::before,
+[data-theme="dark"] .curr details.lit::before { background:var(--accent); }
 [data-theme="dark"] .mobile-bar { background:#0f1823; }
 [data-theme="dark"] .form input,
 [data-theme="dark"] .form select { background:#0b131d; color:var(--text); border:1px solid var(--line); }
