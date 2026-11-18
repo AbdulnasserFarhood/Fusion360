@@ -128,7 +128,7 @@ html { scroll-padding-top:96px; }
 .curr-fill { position:absolute; inset-block:0; inset-inline-start:7px; width:2px; background:var(--accent);
   transform-origin:top; transform:scaleY(var(--cp,0)); }
 .curr details { position:relative; overflow:visible; }
-.curr details::before { content:""; position:absolute; inset-inline-start:-36px; top:28px; width:16px; height:16px;
+.curr details::before { content:""; position:absolute; inset-inline-start:-37px; top:28px; width:16px; height:16px; box-sizing:border-box;
   border-radius:50%; background:#fff; border:2px solid var(--line); transition:background .3s, border-color .3s, box-shadow .3s; }
 .curr details.on::before,
 .curr details.lit::before { background:var(--accent); border-color:var(--accent);
@@ -346,6 +346,35 @@ body, .site-header, .card, details, .price-card, .pace-card, .ticker, .badge, .c
   .foot-grid { grid-template-columns:1fr; }
   .foot-card { min-height:0; }
   .foot-bottom { justify-content:center; text-align:center; }
+}
+
+/* ===== العدّاد التنازلي ===== */
+.countdown { display:flex; flex-direction:column; gap:6px; flex:none; }
+.cd-label { font-size:.85rem; font-weight:700; color:var(--accent); line-height:1.2; }
+.cd-boxes { display:flex; gap:6px; }
+.cd-box { display:flex; flex-direction:column; align-items:center; min-width:50px; padding:6px 4px 5px;
+  border-radius:12px; background:var(--primary); color:#fff; line-height:1.15; }
+.cd-box b { font-size:1.3rem; font-weight:700; font-variant-numeric:tabular-nums; }
+.cd-box small { font-size:.7rem; color:#c9d3df; }
+.cd-box:last-child { background:var(--accent); }
+.cd-box:last-child small { color:#fff; }
+[data-theme="dark"] .cd-box { background:#132131; border:1px solid var(--line); }
+[data-theme="dark"] .cd-box:last-child { background:var(--accent); border-color:var(--accent); }
+/* على الشاشات الكبيرة: العدّاد بجانب الزرّين، في المساحة الفارغة يسارهما */
+@media (min-width:1100px) {
+  .hero-cta { flex-wrap:nowrap; align-items:flex-end; }
+  .hero-cta .btn { flex:none; white-space:nowrap; }
+  .hero-cta .countdown { margin-inline-start:6px; }
+  .cd-box { min-width:46px; }
+  .cd-box b { font-size:1.2rem; }
+  /* الملاحظة تحت رسم المحرك تتقاطع مع العدّاد، فتُخفى على الشاشات الكبيرة فقط */
+  .hero-art figcaption { visibility:hidden; }
+}
+@media (max-width:1099px) {
+  .countdown { flex-basis:100%; margin-top:6px; }
+}
+@media (max-width:860px) {
+  .cd-box { flex:1; }
 }
 
 /* احترام إعداد «تقليل الحركة» */
