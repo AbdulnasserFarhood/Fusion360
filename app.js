@@ -24,6 +24,21 @@
         CE = S.certificate, HT = S.howTo, I = S.instructor, T = S.testimonials,
         F = S.signup, Q = S.faq, FC = S.finalCta, PC = S.pace || {};
 
+  // العدّاد التنازلي
+  const CD = S.countdown || {};
+  const cdEnd = Date.parse(CD.deadline || "");
+  const cdU = CD.units || ["يوم", "ساعة", "دقيقة", "ثانية"];
+  const cdHTML = CD.show && cdEnd > Date.now() ? `
+          <div class="countdown" id="countdown" role="timer">
+            <span class="cd-label">${fill(CD.label)}</span>
+            <div class="cd-boxes">
+              <span class="cd-box"><b data-u="d">--</b><small>${cdU[0]}</small></span>
+              <span class="cd-box"><b data-u="h">--</b><small>${cdU[1]}</small></span>
+              <span class="cd-box"><b data-u="m">--</b><small>${cdU[2]}</small></span>
+              <span class="cd-box"><b data-u="s">--</b><small>${cdU[3]}</small></span>
+            </div>
+          </div>` : "";
+
   const tick = map(PC.ticker, t => `<span>${t}</span>`);
   const V = S.videoIntro || {
     eyebrow: "شاهد قبل أن تبدأ",
@@ -51,7 +66,7 @@
         <p class="lead">${fill(H.subtitle)}</p>
         <div class="cta hero-cta">
           <a class="btn btn-accent btn-glow" href="#signup">${fill(S.buttons.freeHero || S.buttons.free)}<span class="orbit" aria-hidden="true"></span></a>
-          <a class="btn btn-outline" href="${buyHref}" target="_blank">${fill(S.buttons.buy)}</a>
+          <a class="btn btn-outline" href="${buyHref}" target="_blank">${fill(S.buttons.buy)}</a>${cdHTML}
         </div>
         <p class="small muted">${fill(H.note)}</p>
       </div>
@@ -249,6 +264,26 @@
   </div>`;
 
   // ===== نموذج التسجيل: قيود الحقول ثم الإرسال =====
+
+  // ===== العدّاد التنازلي: يتحدّث كل ثانية، ويختفي عند انتهاء الموعد =====
+  const cdEl = document.getElementById("countdown");
+  if (cdEl) {
+    const pad = n => String(n).padStart(2, "0");
+    const cell = u => cdEl.querySelector(`[data-u="${u}"]`);
+    const D = cell("d"), Hh = cell("h"), M = cell("m"), Sx = cell("s");
+    let cdTimer = null;
+    const tickCd = () => {
+      const left = cdEnd - Date.now();
+      if (left <= 0) { clearInterval(cdTimer); cdEl.remove(); return; }
+      const sec = Math.floor(left / 1000);
+      D.textContent = pad(Math.floor(sec / 86400));
+      Hh.textContent = pad(Math.floor(sec % 86400 / 3600));
+      M.textContent = pad(Math.floor(sec % 3600 / 60));
+      Sx.textContent = pad(sec % 60);
+    };
+    tickCd();
+    cdTimer = setInterval(tickCd, 1000);
+  }
 
   // ===== القياس: أحداث Meta Pixel و Google Analytics =====
   const track = (fbEvent, gaEvent, params = {}) => {
